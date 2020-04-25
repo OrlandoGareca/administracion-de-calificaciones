@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=calificaciones
+POSTGRES_USER=bUdiQyveRjfsIvFYmupIjuEqniNKgrda
+POSTGRES_PASSWORD=hcsCGtWTIMzdlH5coAYhOqU8Bg7qpxEXtDJsuNxVVBdHpmoCesB53bgTf2OaUaXS

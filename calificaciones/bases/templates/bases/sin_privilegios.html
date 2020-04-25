@@ -1,0 +1,37 @@
+{% extends 'base/base.html' %}
+{% block page_content %}
+<!-- Earnings (Monthly) Card Example -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="block-header">
+      <h2><b>SIN PRIVILEGIOS</b></h2>
+    </div>
+    <!-- Basic Example -->
+    <div class="row clearfix">
+      <div class="col-lg-5 col-md-6 col-sm-8 col-xs-12">
+        <div class="card">
+          <div class="header bg-red">
+            <h2>
+              Usuario: <b> {{ user.username}} {{user.get_full_name}}</b> </h2>
+
+          </div>
+          <div class="body">
+            <div class="dropdown-divider"></div>
+
+            <b><mark> No tiene suficientes privilegios</mark></b> para cargar opcion solicitada.
+            <br>
+            <small>Para poder acceder, debes loguearte con un usuario con privilegios necesarios.</small>
+            <div class="dropdown-divider"></div>
+            <div class="col">
+              <a href="{% url 'bases:home' %}" class="btn btn-success"><span class="fa fa-home"></span> Ir al Inicio</a>
+              <a href="{% url 'bases:login' %}" class="btn btn-success"><span class="fa fa-user"></span> Ingresar con
+                otro Usuario</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+
+{% endblock page_content %}

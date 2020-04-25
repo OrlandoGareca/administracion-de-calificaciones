@@ -1,0 +1,112 @@
+{% extends 'base/base.html' %}
+
+{% block page_content %}
+
+ <section class="content">
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-xs-12 col-sm-12">
+                    <div class="card profile-card">
+                        <div class="profile-header">&nbsp;</div>
+                        <div class="profile-body">
+                            <div class="image-area " >
+                                <img src="{{obj.picture.url}}" style="width: 200px; height: 200px;" alt="AdminBSB - Profile Image" />
+                            </div>
+                            <div class="content-area">
+                              <b style="color: #ac1454;">Nombre de Usuario</b>
+                                <h5>{{obj.username}}</h5>
+
+                                <p>{{obj.is_active|yesno:"Activo,Inactivo"}}</p>
+                            </div>
+                        </div>
+                        <!--<div id="lightgallery" >
+
+                              <a href="{{obj.picture.url}}" >
+                                  <img  src="{{obj.picture.url}}">
+                              </a>
+
+
+
+                      </div>-->
+                        <div class="profile-footer">
+                          <div class="row">
+                            <div class="col-sm-1" >
+
+                            </div>
+                            <div class="col-sm-4" >
+                              <ul>
+                                <li>
+                                  <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input type="text" value="{{obj.name}}" class="form-control" disabled>
+                                        <label class="form-label" style="color: #ac1454;"><b>Nombres</b></label>
+                                    </div>
+                                </div>
+                                </li>
+                                <li>
+                                  <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input type="text" value="{{obj.apellido}}" class="form-control" disabled>
+                                        <label class="form-label" style="color: #ac1454;"><b>Apellidos</b></label>
+                                    </div>
+                                </div>
+                                </li>
+                                <li>
+                                  <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input type="text" value="{{obj.email}}" class="form-control" disabled>
+                                        <label class="form-label"  style="color: #ac1454;"><b>Correo Electronico</b></label>
+                                    </div>
+                                </div>
+
+                                </li>
+                            </ul>
+                            </div>
+                            <div class="col-sm-2" >
+
+                            </div>
+                            <div class="col-sm-4" >
+                              <ul>
+                                <li>
+                                  <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input type="text"  value="{{obj.dni}}" class="form-control"disabled >
+                                        <label class="form-label" style="color: #ac1454;"><b>Cedula de Identidad</b></label>
+                                    </div>
+                                </div>
+                                </li>
+                                <li>
+                                  <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input type="text"  value="{{obj.date_of_birth}}" class="form-control" disabled>
+                                        <label class="form-label" style="color: #ac1454;"><b>Fecha de Nacimiento</b></label>
+                                    </div>
+                                </div>
+                                </li>
+                                <li>
+                                  <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input type="text" value="{{obj.phone}}" class="form-control" disabled>
+                                        <label class="form-label" style="color: #ac1454;"><b>Nro. Telefono</b></label>
+                                    </div>
+                                </div>
+
+                                </li>
+                            </ul>
+                            </div>
+                            <div class="col-sm-1" >
+
+                            </div>
+                          </div>
+
+
+                        </div>
+                    </div>
+                     </div>
+
+ </div>
+
+ </div>
+</section>
+
+{% endblock  %}
