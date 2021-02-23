@@ -10,24 +10,29 @@
                         <div class="profile-header">&nbsp;</div>
                         <div class="profile-body">
                             <div class="image-area " >
-                                <img src="{{obj.picture.url}}" style="width: 200px; height: 200px;" alt="AdminBSB - Profile Image" />
-                            </div>
-                            <div class="content-area">
+                          {% if not obj.picture %}
+                            <img src="../../../static/images/user.png" style="width: 200px; height: 200px;" alt="AdminBSB - Profile Image"  />
+                           
+                          {% else%}       
+                            <img src="{{obj.picture.url}}  " style="width: 200px; height: 200px;" alt="AdminBSB - Profile Image" />
+                           
+                          {% endif %}
+                                      </div>
+                            <div  class="content-area">
                               <b style="color: #ac1454;">Nombre de Usuario</b>
-                                <h5>{{obj.username}}</h5>
-
-                                <p>{{obj.is_active|yesno:"Activo,Inactivo"}}</p>
+                                <h5>
+                                
+                                  {{obj.username}}
+                                
+                                </h5>
+                                <p>
+                                {% if obj.is_active %} 
+                                  {{obj.is_active|yesno:"Activo,Inactivo"}} 
+                                {% endif %} 
+                                </p>
                             </div>
                         </div>
-                        <!--<div id="lightgallery" >
-
-                              <a href="{{obj.picture.url}}" >
-                                  <img  src="{{obj.picture.url}}">
-                              </a>
-
-
-
-                      </div>-->
+                        
                         <div class="profile-footer">
                           <div class="row">
                             <div class="col-sm-1" >

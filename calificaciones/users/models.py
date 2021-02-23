@@ -32,7 +32,7 @@ class AccountManager(BaseUserManager):
         extra_fields.setdefault('is_superuser', False)
         return self._create_user(email, name, phone, password, **extra_fields)
 
-    def create_superuser(self, email, name, phone, password=None, **extra_fields):
+    def create_superuser(self,email,  name, phone, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
 
@@ -46,7 +46,7 @@ class AccountManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     id = models.AutoField(auto_created=True,primary_key=True,unique=True, serialize=False)
-    email = models.EmailField(unique=True,null=True,blank=True)
+    email = models.EmailField(unique=True)
     name = models.CharField(max_length=150,null=True,blank=True)
     phone = models.CharField(max_length=50,null=True,blank=True)
     date_of_birth = models.DateField(blank=True, null=True)
@@ -61,7 +61,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = AccountManager()
 
-    USERNAME_FIELD = 'username'
+    USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['name', 'phone']
 
     def get_full_name(self):

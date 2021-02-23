@@ -30,10 +30,10 @@
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="{% static 'css/themes/all-themes.css' %}" rel="stylesheet">
-
-     <!-- Light Gallery Plugin Css -->
-    <link href="{% static 'plugins/light-gallery/css/lightgallery.min.css' %}" rel="stylesheet">
-
+  <!-- JQuery DataTable Css -->
+  <link href="{% static 'plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css' %}" rel="stylesheet">
+  
+    
 </head>
 
 <body class="theme-red">
@@ -287,14 +287,18 @@
             <!-- User Info -->
             <div class="user-info">
                 <div class="image">
-                    <img src="{{user.picture.url}}" width="50" height="50" alt="User" />
-
+                    {% if not user.picture %}
+                    <img src="{% static '/images/user.png' %}" width="50" height="50" alt="User" />
+                     {% else%}       
+                     <img src="{{user.picture.url}}" width="50" height="50" alt="User" />
+                    {% endif %}
+                     
                 </div>
 
                 <div class="info-container">
-                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{user.name|upper}}{{user.apellido|upper}}</div>
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% if user.name %}{{user.name|upper}}{% endif %} {% if user.apellido %} {{user.apellido|upper}}  {% endif %} </div>
 
-                    <div class="email">{{ user.email|upper}}</div>
+                    <div class="email">{% if user.email %} {{ user.email|upper}} {% endif %} </div>
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
@@ -320,6 +324,12 @@
                             <span>Home</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{% url 'users:user_list' %}">
+                            <i class="material-icons">person_pin</i>
+                            <span>Usuarios</span>
+                        </a>
+                    </li>
 
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
@@ -331,7 +341,7 @@
                                 <a href="javascript:void(0);" class="menu-toggle">
                                     <span>Cards</span>
                                 </a>
-
+    
                             </li>
                             <li>
                                 <a href="javascript:void(0);" class="menu-toggle">
@@ -439,23 +449,56 @@
     <!-- Bootstrap Datepicker Plugin Js -->
     <script src="{% static 'plugins/bootstrap-datepicker/js/bootstrap-datepicker.js' %} "></script>
 
-      <!-- Light Gallery Plugin Js -->
-    <script src="{% static 'plugins/light-gallery/js/lightgallery-all.js' %}"></script>
-    <script src="{% static 'plugins/light-gallery/js/lg-fullscreen.min.js' %}"></script>
-    <script src="{% static 'plugins/light-gallery/js/lg-thumbnail.min.js' %}"></script>
+    <!-- jquery-datatable -->
+    <script src="{% static 'plugins/jquery-datatable/jquery.dataTables.js' %} "></script>
+  
+    <script src="{% static 'plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js' %} "></script>
 
-    <!-- Custom Js -->
-    <script src="{% static 'js/pages/medias/image-gallery.js' %}"></script>
-
+  
     <!-- Custom Js -->
     <script src="{% static 'js/admin.js' %}"></script>
-    <script>
-        $(document).ready(function(){
-          $("lightgallery").lightGallery();
-        })
+     <script>
+        $(document).ready(function() {
+            // messages timeout for 3 sec 
+            setTimeout(function() {
+                $('.message').fadeOut('slow');
+            }, 3000); // <-- time in milliseconds, 1000 =  1 sec
+        });
+    </script>
+    <!--datatable-->
+  <script>
+      $(document).ready(function() {
+            $('.dataTable').DataTable({
+                "searching": true,
+                "paging":   true,
+                "ordering": false,
+                "info":     true,
+                "bFilter" : true,               
+                "bLengthChange": true,
+                language: {
+                    "decimal": "",
+                    "emptyTable": "No hay información",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Mostrar _MENU_ Entradas",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "search": "Buscar:",
+                    "zeroRecords": "Sin resultados encontrados",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+        } );
+  </script>
 
-
-</script>
     <!-- Demo Js -->
  {% block control_modal %}
     <script>

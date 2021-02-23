@@ -75,7 +75,8 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "calificaciones.users.apps.UsersConfig",
-    "calificaciones.bases"
+    "calificaciones.bases",
+    "calificaciones.materias",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

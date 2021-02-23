@@ -5,7 +5,6 @@ from calificaciones.users.views import (
     UserNew,
     UserEdit,
     UsuarioInactivar,
-    Porfile,
     perfil
 
 )

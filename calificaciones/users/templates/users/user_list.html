@@ -54,14 +54,18 @@
 
                                     <tbody>
                                     {% for item in obj %}
-                                        <tr>
+                                    {% if not item.is_staff %}
+                                      {% if not item.superuser %}
+                                       <tr>
                                             <th>{{item.id}}</th>
                                             <th>{{item.dni}}</th>
                                             <th>{{item.username}}</th>
                                             <th>{{item.name}}</th>
                                             <th>{{item.apellido}}</th>
 
-                                            <th onclick="inactivar({{ item.id }})" >  {% if item.is_active %}
+                                            <td>
+                                              <div  onclick="inactivar({{ item.id }})">
+                                               {% if item.is_active %}
                                               <div  class="col-sm-3">
                                                 <div class="switch" >
                                                     <h4><label><input type="checkbox" checked><span class="lever switch-col-red"></span></label></h4>
@@ -74,20 +78,21 @@
                                                 </div>
                                             </div>
                                             {% endif %}
-</th>
+                                          </div>
+                                          </td>
                                             <th>{{item.phone}}</th>
                                             <th>
-                                              <div class="row">
+
                                                 <button class="btn bg-light-green btn-circle waves-effect waves-circle waves-float"
                                                   onclick="return abrir_modal('{% url 'users:user_edit' item.id %}')">
                                                  <i class="material-icons">mode_edit</i></i></button>
-                                                <button type="button" class="btn bg-red btn-circle waves-effect waves-circle waves-float">
-                                                    <i class="material-icons">delete_forever</i>
-                                                </button>
-                                              </div>
+
                                             </th>
 
                                         </tr>
+                                      {% endif %}
+                                    {% endif %}
+
                                     {% endfor %}
 
 
@@ -104,6 +109,8 @@
             </div>
 
       </section>
+      {% endblock page_content %}
+      {% block js %}
 
       <script>
 
@@ -125,7 +132,7 @@
             success: function(response){
               if(response==="OK")
               {
-                location.reload(true);
+                windows.location.reload(true);
               }
               else{
                 mensaje("Error Intentando cCambiar Estado a Cliente");
@@ -133,10 +140,12 @@
             },
             error:function(jqXHR, textStatus, errorThrow){
               console.log(textStatus,errorThrow);
-        mensaje(errorThrow,'red');
-        cerrar_modal();
+              mensaje(errorThrow,'red');
+              cerrar_modal();
             }
           });
         }
       </script>
-{% endblock page_content %}
+      {% endblock js %}
+
+

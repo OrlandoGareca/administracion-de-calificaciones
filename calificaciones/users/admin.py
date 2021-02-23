@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.admin import AdminPasswordChangeForm
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
 from calificaciones.users.models import User
 from calificaciones.users.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import get_user_model

@@ -30,12 +30,25 @@
         <div class="logo">
             <a href="javascript:void(0);">Admin<b>BSB</b></a>
             <small>Admin BootStrap Based - Material Design</small>
-        </div>
+        </div >
         <div class="card">
             <div class="body">
                 <form id="sign_up" method="POST" action="{% url 'bases:register' %}">
                  {% csrf_token %}
-
+                {% if form.errors %}
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <div style="size: 10px;" class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endif %}
                     <div class="msg">Register a new membership</div>
                       <div class="input-group">
                           <span class="input-group-addon">
@@ -84,8 +97,8 @@
                         <span class="input-group-addon">
                             <i class="material-icons">date_range</i>
                         </span>
-                        <div class="form-line" id="datepicker">
-                            <input type="text" class="form-control datepicker" name="date_of_birth" id="id_date_of_birth" placeholder="Fecha de Nacimiento" required>
+                        <div class="form-line" >
+                            <input type="date" id="datepicker" class="form-control datepicker" name="date_of_birth" id="id_date_of_birth" placeholder="Fecha de Nacimiento" required>
                         </div>
                     </div>
                     <div class="input-group">
@@ -98,12 +111,28 @@
                         </div>
                     </div>
 
-
-                    <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit">SIGN UP</button>
-
+                    <!--<button type="button" class="btn btn-default waves-effect" data-toggle="modal" data-target="#smallModal">MODAL - SMALL SIZE</button>-->
+                    <button class="btn btn-block btn-lg bg-pink waves-effect" type="button" data-toggle="modal" data-target="#smallModal">Registrar</button>
+                    <div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
+                        <div class="modal-dialog modal-sm" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="smallModalLabel">Registrar</h4>
+                                </div>
+                                <div class="modal-body">
+                                    Verifique que sus datos esten correctos!!
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-link waves-effect">Registrarse</button>
+                                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Salir</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="m-t-25 m-b--5 align-center">
                         <a href="{% url 'bases:login' %}">You already have a membership?</a>
                     </div>
+
                 </form>
             </div>
         </div>

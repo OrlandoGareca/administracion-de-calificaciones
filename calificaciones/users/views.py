@@ -17,8 +17,9 @@ class UserListView(SinPrivilegios,ListView):
     model = User
     template_name = "users/user_list.html"
     context_object_name = "obj"
-
+    queryset = User.objects.order_by('id')
     permission_required ="users.user_view"
+
 
 class UserNew(SinPrivilegios, CreateView):
     model= User
@@ -50,12 +51,7 @@ def UsuarioInactivar(request,id):
         return HttpResponse("FAIL")
     return HttpResponse("FAIL")
 
-class Porfile(SinPrivilegios,View):
-    model = User
-    template_name = "users/porfile.html"
-    context_object_name = "obj"
 
-    permission_required = "users.user_view"
 
 
 def perfil(request,id):

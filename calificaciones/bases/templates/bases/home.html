@@ -1,1 +1,52 @@
+
 {% extends 'base/base.html' %}
+{% block page_content %}
+
+   <!-- Basic Examples -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+               
+            </div>
+            <div class="row clearfix">
+            
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-offset-8">
+                                {% if messages %}
+                                <ul class="message">
+                                    
+                                    {% for message in messages %}
+                                        <div style="text-align: center" class="alert alert-success {{ message.tags }}  alert-dismissible" role="alert">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <a href="#" class="del-msg">&times;</a>
+                                            </button>
+                                            {{ message }} &nbsp;{% if user.name %}{{user.name|upper}}{% endif %} &nbsp;{% if user.apellido %} {{user.apellido|upper}}  {% endif %}
+                                        
+                                        </div>
+                                    {% endfor %}
+                                    
+                                
+                                </ul>
+                                {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                   
+                        <div class="body">
+                            <div class="image_inner_container text-center">
+                                <img src="../../../static/images/feyalegria.png" style="width: 50%;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Basic Examples -->
+            </div>
+
+      </section>
+      {% endblock page_content %}
+      
+
